@@ -9,7 +9,7 @@ from django.urls import reverse_lazy
 
 class UncompletedTaskListView(ListView):
     model = Task
-    template_name = 'tasks/uncompleted_task_list.html' 
+    template_name = 'tasks/task_list_uncompleted.html' 
     context_object_name = 'tasks'
     
     def get_queryset(self):
@@ -18,7 +18,7 @@ class UncompletedTaskListView(ListView):
 
 class CompletedTaskListView(ListView):
     model = Task
-    template_name = 'tasks/completed_task_list.html'
+    template_name = 'tasks/task_list_completed.html'
     context_object_name = 'tasks'
     
     def get_queryset(self):

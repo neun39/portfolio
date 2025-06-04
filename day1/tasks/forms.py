@@ -5,7 +5,7 @@ from .models import Task
 class TaskForm(ModelForm):
     class Meta:
         model = Task
-        fields =['fields','description']
+        fields =['title','description']
         labels = {
             "title" : "タイトル",
             "description" : "説明",

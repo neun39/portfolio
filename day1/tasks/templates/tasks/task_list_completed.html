@@ -34,7 +34,7 @@
         </ul>
     {% else %}
         <p>表示する完了のタスクはありません。</p>
-        <p><a href="{% url 'task_create' %}">新しいタスクを作成しますか？</a></p>
+        <p><a href="{% url 'tasks:task_create' %}">新しいタスクを作成しますか？</a></p>
     {% endif %}
 
 {% endblock %}

@@ -18,10 +18,10 @@
         <header>
             <h1>{% block page_title %}タスク管理{% endblock page_title %}</h1>
             <nav>
-                <a href="{% url 'task_list_uncompleted' %}">未完了タスク</a>
-                <a href="{% url 'task_list_completed' %}">完了済みタスク</a>
+                <a href="{% url 'tasks:task_list_uncompleted' %}">未完了タスク</a>
+                <a href="{% url 'tasks:task_list_completed' %}">完了済みタスク</a>
                 {# 他のナビゲーションリンク (例: タスク作成ページ) #}
-                <a href="{% url 'task_create' %}">タスクを追加</a>
+                <a href="{% url 'tasks:task_create' %}">タスクを追加</a>
             </nav>
             <hr>
         </header>

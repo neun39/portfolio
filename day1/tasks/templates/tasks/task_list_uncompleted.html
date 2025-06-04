@@ -8,7 +8,7 @@
     {% if tasks %}
         <ul>
             {% for task in tasks %}
-                <li class="task-item {% if if not task.completed  %}completed{% endif %}">
+                <li class="task-item {% if not task.completed  %}completed{% endif %}">
                     <h3>
                         <a href="{% url 'task_detail' task.id %}">{{ task.title }}</a>
                     </h3>
@@ -34,7 +34,7 @@
         </ul>
     {% else %}
         <p>表示する未完了のタスクはありません。</p>
-        <p><a href="{% url 'task_create' %}">新しいタスクを作成しますか？</a></p>
+        <p><a href="{% url 'tasks:task_create' %}">新しいタスクを作成しますか？</a></p>
     {% endif %}
 
 {% endblock %}

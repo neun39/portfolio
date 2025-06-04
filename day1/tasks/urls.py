@@ -1,7 +1,7 @@
 from django.urls import path
 from .views import UncompletedTaskListView,CompletedTaskListView,TaskCreateView
 
-app_name = 'task'
+app_name = 'tasks'
 
 urlpatterns = [
     path('uncompleted/', UncompletedTaskListView.as_view(), name='task_list_uncompleted'),
