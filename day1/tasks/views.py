@@ -1,5 +1,7 @@
 from django.views.generic.list import ListView
 from django.views.generic.edit import FormView
+from django.shortcuts import get_object_or_404, redirect
+from django.views import View 
 from .models import Task
 from .forms import TaskFrom
 # Create your views here.
@@ -24,4 +26,10 @@ class CompletedTaskListView(ListView):
 class TaskCreateFormView(FormView):
     template_name  = "tasks/task_create.html"
     form_class = TaskFrom
-    
+
+class TaskToggleCompleteView(View):
+    def post(self, request, pk):
+        task = get_object_or_404(Task, id=pk)
+        task.completed = not task.completed
+        task.save()
+        return redirect(request.META.get('HTTP_REFERER', 'task_list_uncompleted'))

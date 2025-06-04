@@ -2,7 +2,7 @@
 
 {% block title %}完了タスク{% endblock %}
 
-{% block page_title %}未完了のタスク一覧{% endblock %}
+{% block page_title %}完了のタスク一覧{% endblock %}
 
 {% block content %}
     {% if tasks %}
@@ -33,7 +33,7 @@
             {% endfor %}
         </ul>
     {% else %}
-        <p>表示する未完了のタスクはありません。</p>
+        <p>表示する完了のタスクはありません。</p>
         <p><a href="{% url 'task_create' %}">新しいタスクを作成しますか？</a></p>
     {% endif %}
 
