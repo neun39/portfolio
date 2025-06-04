@@ -1,9 +1,10 @@
 from django.views.generic.list import ListView
-from django.views.generic.edit import FormView
+from django.views.generic.edit import CreateView
 from django.shortcuts import get_object_or_404, redirect
 from django.views import View 
 from .models import Task
-from .forms import TaskFrom
+from .forms import TaskForm 
+from django.urls import reverse_lazy
 # Create your views here.
 
 class UncompletedTaskListView(ListView):
@@ -23,9 +24,12 @@ class CompletedTaskListView(ListView):
     def get_queryset(self):
         return Task.objects.filter(completed=True).order_by("-created_at")
 
-class TaskCreateFormView(FormView):
-    template_name  = "tasks/task_create.html"
-    form_class = TaskFrom
+class TaskCreateView(CreateView):
+    model = Task
+    form_class = TaskForm
+    template_name = "tasks/task_create.html" 
+    success_url = reverse_lazy('task_list_uncompleted')
+    
 
 class TaskToggleCompleteView(View):
     def post(self, request, pk):

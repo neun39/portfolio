@@ -8,7 +8,7 @@
     {% if tasks %}
         <ul>
             {% for task in tasks %}
-                <li class="task-item {% if task.completed = False %}completed{% endif %}">
+                <li class="task-item {% if if not task.completed  %}completed{% endif %}">
                     <h3>
                         <a href="{% url 'task_detail' task.id %}">{{ task.title }}</a>
                     </h3>
