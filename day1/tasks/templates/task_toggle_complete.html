@@ -1,0 +1,6 @@
+<form method="post" action="{% url 'task_toggle_complete' task.id %}">
+    {% csrf_token %}
+    <button type="submit">
+        {% if task.completed %}未完了に戻す{% else %}完了にする{% endif %}
+    </button>
+</form>

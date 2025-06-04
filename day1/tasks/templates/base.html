@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}My ToDo App{% endblock title %}</title>
+    {# ここに共通のCSSやJSのリンクなどを記述 #}
+    <style>
+        body { font-family: sans-serif; margin: 20px; }
+        .container { max-width: 800px; margin: auto; }
+        nav a { margin-right: 10px; }
+        .task-item { border: 1px solid #ccc; padding: 10px; margin-bottom: 10px; }
+        .completed { background-color: #e6e6e6; text-decoration: line-through; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>{% block page_title %}タスク管理{% endblock page_title %}</h1>
+            <nav>
+                <a href="{% url 'task_list_uncompleted' %}">未完了タスク</a>
+                <a href="{% url 'task_list_completed' %}">完了済みタスク</a>
+                {# 他のナビゲーションリンク (例: タスク作成ページ) #}
+                <a href="{% url 'task_create' %}">タスクを追加</a>
+            </nav>
+            <hr>
+        </header>
+
+        <main>
+            {% block content %}
+            {# 各ページ固有のコンテンツがここに入ります #}
+            {% endblock content %}
+        </main>
+
+        <footer>
+            <hr>
+            <p>&copy; 2025 My ToDo App</p>
+        </footer>
+    </div>
+</body>
+</html>

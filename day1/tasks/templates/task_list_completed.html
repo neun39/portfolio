@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+
+{% block title %}完了タスク{% endblock %}
+
+{% block page_title %}未完了のタスク一覧{% endblock %}
+
+{% block content %}
+    {% if tasks %}
+        <ul>
+            {% for task in tasks %}
+                <li class="task-item {% if task.completed %}completed{% endif %}">
+                    <h3>
+                        <a href="{% url 'task_detail' task.id %}">{{ task.title }}</a>
+                    </h3>
+                    <p>作成日時: {{ task.created_at|date:"Y年m月d日 H:i" }}</p>
+                    {% if task.description %}
+                        <p>{{ task.description|linebreaksbr|truncatewords:20 }}</p>
+                    {% endif %}
+                    <p>
+                        ステータス: {% if task.completed %}完了済み{% else %}未完了{% endif %}
+                    </p>
+                    <div>
+                        <a href="{% url 'task_update' task.id %}">編集</a>
+                        <a href="{% url 'task_delete' task.id %}">削除</a>
+                        <form method="post" action="{% url 'task_toggle_complete' task.id %}" style="display: inline;">
+                            {% csrf_token %}
+                            <button type="submit">
+                                {% if task.completed %}未完了に戻す{% else %}完了にする{% endif %}
+                            </button>
+                        </form>
+                    </div>
+                </li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p>表示する未完了のタスクはありません。</p>
+        <p><a href="{% url 'task_create' %}">新しいタスクを作成しますか？</a></p>
+    {% endif %}
+
+{% endblock %}
