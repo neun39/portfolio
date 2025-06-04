@@ -16,5 +16,12 @@
                 {% endfor %}
             </div>
         {% endif %}
+
         {{ form.as_p }}
+
+        {# ↓ ここからが追加・修正部分です #}
+        <hr> {# 区切り線（任意） #}
+        <button type="submit" class="btn btn-primary">作成する</button>
+        <a href="{% url 'task_list_uncompleted' %}" class="btn btn-secondary">キャンセル</a> {# キャンセルして一覧に戻るリンク（推奨） #}
+    </form> {# ← form タグをここで閉じます #}
 {% endblock %}
