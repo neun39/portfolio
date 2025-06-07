@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+
+{% block title %}日記を作成{% endblock %}
+
+{% block page_title %}日記を作成{% endblock %}
+
+{% block content %}
+    <h2>日記を書く</h2>
+
+    <form method="post" action="">
+        {% csrf_token %}
+        {% if form.non_field_errors %}
+            <div class="form-error alert alert-danger">
+                {% for error in form.non_field_errors %}
+                    <p>{{error}}</p>
+                {% endfor %}
+            </div>
+        {% endif %}
+
+        {{ form.as_p }}
+
+        <hr>
+        <button type="submit" class="btn btn-primary">投稿する</button> {# ボタン前の '_' を削除 #}
+        <a href="{% url "mydiary:entry_list" %}" class="btn btn-secondary">キャンセル</a>
+    </form>
+{% endblock %}

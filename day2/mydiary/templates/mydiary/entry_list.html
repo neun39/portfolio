@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+
+{% block title %}日記一覧{% endblock %}
+
+{% block page_title %}日記一覧{% endblock %}
+
+{% block content %}
+    {% if entries %}
+        <ul>
+            {% for entry in entries %}
+                <li>
+                    <h3>
+                        {# urls.py の修正ができていれば、このリンクは正しく機能します #}
+                        <a href="{% url 'mydiary:entry_detail' entry.pk %}">{{ entry.title }}</a>
+                    </h3>
+                    <p>日付: {{ entry.date|date:"Y年m月d日" }}</p>
+                    <p>作成日: {{ entry.created_at|date:"Y年m月d日 H:i" }}</p> {# フィルタ名を 'date' に修正 #}
+                </li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p>日記がありません</p>
+        {# リンクの記述を修正 #}
+        <p><a href="{% url 'mydiary:entry_create' %}">最初の日記を書いてみましょう</a></p>
+    {% endif %}
+{% endblock %}

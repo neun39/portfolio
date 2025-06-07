@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+
+{# ブラウザのタブに日記のタイトルを表示します #}
+{% block title %}{{ object.title }} - マイシンプル日記{% endblock %}
+
+{# ページのメインタイトルとして日記のタイトルを表示します #}
+{% block page_title %}{{ object.title }}{% endblock %}
+
+{% block content %}
+    <article class="diary-entry">
+        {# 日記の日付を表示します。'|date:"..."' は日付の表示形式を指定するフィルタです #}
+        <p class="entry-date">{{ object.date|date:"Y年m月d日 (D)" }}</p>
+
+        {# 日記の本文を表示します。'|linebreaksbr' は改行を<br>タグに変換してくれます #}
+        <div class="entry-content">
+            <p>{{ object.content|linebreaksbr }}</p>
+        </div>
+
+        {# エントリの作成日時や更新日時も表示できます（任意） #}
+        <div class="entry-meta" style="font-size: 0.8em; color: #666; text-align: right;">
+            <p>
+                作成: {{ object.created_at|date:"Y/m/d H:i" }} | 
+                最終更新: {{ object.updated_at|date:"Y/m/d H:i" }}
+            </p>
+        </div>
+
+        <hr>
+
+        {# 編集・削除ページへのリンクを追加すると便利です #}
+        <div class="entry-actions">
+            <a href="{% url 'mydiary:entry_update' object.pk %}" class="btn btn-secondary">編集する</a>
+            <a href="{% url 'mydiary:entry_delete' object.pk %}" class="btn btn-danger">削除する</a>
+        </div>
+    </article>
+
+    <hr>
+    <a href="{% url 'mydiary:entry_list' %}" class="btn btn-primary">日記一覧に戻る</a>
+{% endblock %}
